@@ -12,4 +12,6 @@ router.post('/', asyncRoute(tasks.createTask));
 
 router.put('/:id/complete', asyncRoute(tasks.completeTask));
 
+router.delete('/:id', asyncRoute(tasks.deleteTask));
+
 module.exports = router;

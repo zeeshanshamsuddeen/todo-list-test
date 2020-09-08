@@ -1,4 +1,5 @@
 const tasksModel = require('./models/tasks');
+const accountsModel = require('./models/accounts');
 
 const dbFunctions = require('./dbFunctions');
 
@@ -18,11 +19,14 @@ const requiredDbFunctions = [
 ];
 
 const tasks = {};
-const accountsDbFunctions = {};
+const accounts = {};
 
 const createDbFunctions = () => {
   requiredDbFunctions.forEach((requiredFunc) => {
     tasks[requiredFunc] = (...args) => dbFunctions[requiredFunc](tasksModel, ...args);
+    accounts[requiredFunc] = (...args) => dbFunctions[requiredFunc](
+      accountsModel, ...args,
+    );
   });
 };
 
@@ -30,6 +34,7 @@ createDbFunctions();
 
 const db = {
   tasks,
+  accounts,
 };
 
 module.exports = db;

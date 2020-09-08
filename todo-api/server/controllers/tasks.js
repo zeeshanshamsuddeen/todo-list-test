@@ -1,10 +1,9 @@
 const { tasks } = require('../services');
-const utils = require('../shared/utils');
-const keywords = require('../constants/keywords');
-const db = require('../db/dbModule');
 
 const getTasks = async (req, res) => {
-  const tasksResult = await tasks.getTasks(req.query);
+  const { level, id: taskId } = req.query;
+  const queryObject = { level, taskId };
+  const tasksResult = await tasks.getTasks(queryObject);
   return res.json({ success: true, tasks: tasksResult.tasks });
 };
 
@@ -12,6 +11,15 @@ const getTask = async (req, res) => {
   const { id: taskId } = req.params;
   const { task } = await tasks.getTask(taskId);
   return res.json({ success: true, task });
+};
+
+const deleteTask = async (req, res) => {
+  const { id: taskId } = req.params;
+  const deleteResponse = await tasks.deleteTask(taskId);
+  if (!deleteResponse.success) {
+    return res.json({ success: false, error: deleteResponse.error });
+  }
+  return res.json({ success: true });
 };
 
 const completeTask = async (req, res) => {
@@ -36,4 +44,5 @@ module.exports = {
   getTask,
   completeTask,
   createTask,
+  deleteTask,
 };

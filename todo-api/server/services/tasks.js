@@ -23,9 +23,25 @@ const completeTask = async (taskId) => {
   return { success: true };
 };
 
-const createTask = async ({ level, taskId: parentId }) => {
+const deleteTask = async (taskId) => {
+  const tasksList = [taskId];
+  // level order traversal to remove all children of a task
+  while (tasksList.length) {
+    const id = tasksList.shift();
+    // eslint-disable-next-line no-await-in-loop
+    await db.tasks.remove({ taskId: id });
+    // eslint-disable-next-line no-await-in-loop
+    const children = await db.tasks.findWithLean({ parentId: id });
+    const childrenList = children.map((child) => child.taskId);
+    tasksList.push(...childrenList);
+  }
+  return { success: true };
+};
+
+const createTask = async ({ level, taskId: parentId, text }) => {
   const initObject = {
     taskId: utils.common.getUUID(),
+    text,
     level,
     status: keywords.ACTIVE,
   };
@@ -39,4 +55,5 @@ module.exports = {
   getTask,
   createTask,
   completeTask,
+  deleteTask,
 };
