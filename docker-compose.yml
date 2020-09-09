@@ -24,6 +24,12 @@ services:
       - "8000:8000"
     links:
       - mongo
+    environment:
+      - PORT=8000
+      - APP_DATABASE_URL=mongo
+      - APP_DATABASE_NAME=todo-list
+      - NODE_ENV=development
+
 
   mongo:
     container_name: mongo
