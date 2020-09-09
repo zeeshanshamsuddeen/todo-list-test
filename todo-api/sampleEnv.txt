@@ -1,4 +1,4 @@
 PORT=8000
-APP_DATABASE_URL=localhost
+APP_DATABASE_URL=mongo
 APP_DATABASE_NAME=todo-list
 NODE_ENV=development

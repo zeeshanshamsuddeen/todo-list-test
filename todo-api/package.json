@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "initialize-data": "node server/supportScripts/addAccountToDB.js",
-    "start": "nodemon bin/www.js",
+    "start": "nodemon bin/www.js && npm run initialize-data",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix ."
   },

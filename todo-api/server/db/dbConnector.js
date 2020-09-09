@@ -8,6 +8,19 @@ const mongoOptions = {
   useNewUrlParser: true,
   useFindAndModify: false,
 };
-mongoose.connect(`mongodb://${URL}/${NAME}`, mongoOptions);
+
+let isDatabaseConnected = false;
+
+const connectToDb = async () => {
+  if (isDatabaseConnected) return;
+  try {
+    await mongoose.connect(`mongodb://${URL}:27017/${NAME}`, mongoOptions);
+    isDatabaseConnected = true;
+  } catch (error) {
+    setTimeout(connectToDb, 5000);
+  }
+};
+
+connectToDb();
 
 module.exports = mongoose;
