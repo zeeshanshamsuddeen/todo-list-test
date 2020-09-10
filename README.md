@@ -34,7 +34,7 @@ A simple Todo List using React JS, Node JS, Express JS and MongoDB which runs in
 
 - `GET: /api/v1/tasks?level=1&id=xxxx`
 
-  Get the list of tasks/sub-tasks of a parent Task ID(optional) and which at a particular level.
+  Get the list of tasks/sub-tasks of a parent Task ID(optional) and which are at a particular level.
   
 - `GET: /api/v1/tasks/:id`
 
