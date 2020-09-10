@@ -1,6 +1,6 @@
 # Todo List
 
-A simple Todo List using React JS, Node JS, Express JS and MongoDB. Tasks can be added, edited and deleted. Each task can have sub tasks upto any level. A simple login mechanism has also been added.
+A simple Todo List using React JS, Node JS, Express JS and MongoDB which runs in Docker containers. Tasks can be added, edited and deleted. Each task can have sub tasks upto any level. A simple login mechanism has also been added.
 
 
 ## Table of Contents
@@ -30,11 +30,11 @@ A simple Todo List using React JS, Node JS, Express JS and MongoDB. Tasks can be
   "text" : "yyyyy"
 }`
 
-  Add a new task to the database.
+  Add a new task to the database with the Task ID of the parent(optional).
 
 - `GET: /api/v1/tasks?level=1&id=xxxx`
 
-  Get the list of tasks at a particular level and Task ID(optional).
+  Get the list of tasks/sub-tasks of a parent Task ID(optional) and which at a particular level.
   
 - `GET: /api/v1/tasks/:id`
 
